@@ -91,7 +91,7 @@ public class RandomBlockPlacement implements ClientModInitializer {
             return;
         }
         PlayerInventory inventory = player.getInventory();
-        int index = inventory.selectedSlot;
+        int index = inventory.getSelectedSlot();
         if (maxSlot >= PlayerInventory.getHotbarSize()) {
             maxSlot = PlayerInventory.getHotbarSize() - 1;
         }
@@ -108,7 +108,7 @@ public class RandomBlockPlacement implements ClientModInitializer {
                 targetCount -= getBlockCount(inventory, targetSlot);
                 targetSlot++;
             }
-            inventory.selectedSlot = targetSlot;
+            inventory.setSelectedSlot(targetSlot);
         }
     }
 
