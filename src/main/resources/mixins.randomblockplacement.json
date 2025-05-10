@@ -4,7 +4,8 @@
     "refmap": "RandomBlockPlacement-refmap.json",
     "minVersion": "0.6",
     "client": [
-        "PlayerInteractBlockMixin"
+        "PlayerInteractBlockMixin",
+        "PlayerInventoryAccessor"
     ],
     "injectors": {
         "defaultRequire": 1

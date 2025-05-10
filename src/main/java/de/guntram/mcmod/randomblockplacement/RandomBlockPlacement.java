@@ -1,5 +1,6 @@
 package de.guntram.mcmod.randomblockplacement;
 
+import de.guntram.mcmod.randomblockplacement.mixins.PlayerInventoryAccessor;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -91,7 +92,7 @@ public class RandomBlockPlacement implements ClientModInitializer {
             return;
         }
         PlayerInventory inventory = player.getInventory();
-        int index = inventory.selectedSlot;
+        int index = ((PlayerInventoryAccessor) player.getInventory()).getSelectedSlot();
         if (maxSlot >= PlayerInventory.getHotbarSize()) {
             maxSlot = PlayerInventory.getHotbarSize() - 1;
         }
@@ -108,7 +109,7 @@ public class RandomBlockPlacement implements ClientModInitializer {
                 targetCount -= getBlockCount(inventory, targetSlot);
                 targetSlot++;
             }
-            inventory.selectedSlot = targetSlot;
+            ((PlayerInventoryAccessor) player.getInventory()).setSelectedSlot(targetSlot);
         }
     }
 
