@@ -1,3 +1,6 @@
+Fork from https://github.com/gbl/RandomBlockPlacement but updated to recent MC versions since that one is end of life.
+
+
 Want to help translate this mod to your language?
 ======================================
 You can help me translate this mod on https://crowdin.com/project/randomblockplacement
