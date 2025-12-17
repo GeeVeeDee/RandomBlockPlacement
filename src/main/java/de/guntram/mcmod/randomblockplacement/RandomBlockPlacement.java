@@ -22,6 +22,13 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.arg
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
+import org.lwjgl.glfw.GLFW;
+
 public class RandomBlockPlacement implements ClientModInitializer {
     static final String MODID = "randomblockplacement";
     static final String MODNAME = "RandomBlockPlacement";
@@ -30,6 +37,8 @@ public class RandomBlockPlacement implements ClientModInitializer {
     private boolean isActive;
     private int minSlot, maxSlot;
     private KeyBinding onOff;
+    private static final KeyBinding.Category CATEGORY = KeyBinding.Category.create(Identifier.of("randomblockplacement", "controls"));
+
 
     @Override
     public void onInitializeClient() {
@@ -43,7 +52,7 @@ public class RandomBlockPlacement implements ClientModInitializer {
 
     private void setKeyBindings() {
         final String category = "key.categories.randomblockplacement";
-        KeyBindingHelper.registerKeyBinding(onOff = new KeyBinding("key.randomblockplacement.toggle", InputUtil.Type.KEYSYM, GLFW_KEY_R, category));
+        KeyBindingHelper.registerKeyBinding(onOff = new KeyBinding("key.randomblockplacement.toggle", InputUtil.Type.KEYSYM, GLFW_KEY_R, CATEGORY));
         ClientTickEvents.END_CLIENT_TICK.register(e -> processKeyBinds());
     }
 
